@@ -29,7 +29,7 @@ $theme = isset($_SESSION['theme']) ? $_SESSION['theme'] : 'summer';
         <?php endif; ?>
 
     <section class="container my-5">
-        <h2 class="text-center">Register</h2>
+        <h2 class="text-center">Login</h2>
         <form id="loginForm" action="process_login.php" method="POST" class="p-4 border rounded">
             <div class="mb-3">
                 <label for="Username" class="form-label">Username</label>

@@ -1,4 +1,5 @@
 <!-- This page displays a users booking history by querying the booking table based on the user id-->
+
  <?php
 include 'includes/config.php';
 session_start();
@@ -8,7 +9,7 @@ if (!isset($_SESSION['user_id'])) {
     exit();
 }
 $user_id = $_SESSION['user_id'];
-// Fetch booking history for the user
+//  booking history for the user
 $stmt = $conn->prepare("SELECT b.booking_id, c.name AS campsite_name, b.checkin, b.checkout, b.tent_rental, b.camping_gear FROM booking b JOIN campsites c ON b.campsite_id = c.campsite_id WHERE b.user_id = ?");
 $stmt->bind_param("i", $user_id);
 $stmt->execute();
@@ -28,11 +29,14 @@ $result = $stmt->get_result();
 
     <section class="container my-5">
         <h2 class="text-center">Your Booking History</h2>
-
         <!-- Display error message if any -->
         <?php if (isset($_SESSION['error'])): ?>
             <div class="alert alert-danger"><?php echo htmlspecialchars($_SESSION['error']); ?></div>
             <?php unset($_SESSION['error']); ?>
+        <?php endif; ?>
+        <?php if (isset($_SESSION['success'])): ?>
+            <div class="alert alert-success"><?php echo htmlspecialchars($_SESSION['success']); ?></div>
+            <?php unset($_SESSION['success']); ?>
         <?php endif; ?>
 
         <table class="table table-striped">

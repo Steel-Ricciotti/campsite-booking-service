@@ -3,8 +3,8 @@ session_start();
 include 'includes/config.php';
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $campsite_id = isset($_POST['campsite_id']) ? intval($_POST['campsite_id']) : 0;
-    $start_date = isset($_POST['start_date']) ? mysqli_real_escape_string($conn, $_POST['start_date']) : '';
-    $end_date = isset($_POST['end_date']) ? mysqli_real_escape_string($conn, $_POST['end_date']) : '';
+    $start_date = isset($_POST['checkin']) ? mysqli_real_escape_string($conn, $_POST['checkin']) : '';
+    $end_date = isset($_POST['checkout']) ? mysqli_real_escape_string($conn, $_POST['checkout']) : '';
     $user_id = isset($_SESSION['user_id']) ? intval($_SESSION['user_id']) : 0;
     $tent = isset($_POST['tent']) ? 1 : 0;
     $gear = isset($_POST['gear']) ? 1 : 0;
@@ -12,11 +12,12 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     if ($campsite_id > 0 && !empty($start_date) && !empty($end_date) && $user_id > 0) {
         // Insert booking into the database
         $stmt = $conn->prepare("INSERT INTO booking (campsite_id, user_id, checkin, checkout, tent_rental,camping_gear) VALUES (?, ?, ?, ?, ?, ?)");
-        $stmt->bind_param("iiss", $campsite_id, $user_id, $start_date, $end_date, $tent, $gear);
+        $stmt->bind_param("iissii", $campsite_id, $user_id, $start_date, $end_date, $tent, $gear);
 
         if ($stmt->execute()) {
             $_SESSION['success'] = "Booking successful!";
             header("Location: booking_history.php");
+             $_SESSION['error'] = "Booking successful!";
             exit();
         } else {
             $_SESSION['error'] = "Booking failed: " . $conn->error;

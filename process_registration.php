@@ -9,7 +9,6 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $email = mysqli_real_escape_string($conn, $_POST['email']);
     $password_hash = password_hash($_POST['password'], PASSWORD_DEFAULT);
 
- 
     //Check if username or email already exists
     $check_query = "SELECT * FROM users WHERE username='$username' OR email='$email'";
     $check_result = mysqli_query($conn, $check_query);

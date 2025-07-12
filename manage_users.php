@@ -3,6 +3,7 @@ include 'includes/config.php';
 session_start();
 $theme = isset($_SESSION['theme']) ? $_SESSION['theme'] : 'summer';
 $error_message = isset($_SESSION['error']) ? $_SESSION['error'] : '';
+$success_message = isset($_SESSION['success']) ? $_SESSION['success'] : '';
 //This file is used to allow an admin to manage users, including viewing, editing, and deleting user accounts.
 //It will display a list of users and provide options for each user to edit or delete their
 //account. The admin can also add new users.
@@ -38,12 +39,17 @@ $error_message = isset($_SESSION['error']) ? $_SESSION['error'] : '';
 
     <section class="container my-5">
         <h2 class="text-center">Manage Users</h2>
-
         <!-- Display error message if any -->
         <?php if ($error_message): ?>
             <div class="alert alert-danger"><?php echo htmlspecialchars($error_message); ?></div>
             <?php unset($_SESSION['error']); ?>
         <?php endif; ?>
+        <!-- Flash a success message if any -->
+        <?php if ($success_message): ?>
+            <div class="alert alert-success"><?php echo htmlspecialchars($success_message); ?></div>
+            <?php unset($_SESSION['success']); ?>
+        <?php endif; ?>
+
 
         <table class="table table-striped">
             <thead>

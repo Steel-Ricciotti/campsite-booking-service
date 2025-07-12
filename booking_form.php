@@ -7,7 +7,6 @@ $result = mysqli_query($conn, $query);
 $campsites = mysqli_fetch_all($result, MYSQLI_ASSOC);
 $theme = isset($_SESSION['theme']) ? $_SESSION['theme'] : 'summer';
 $campsite_id = isset($_GET['id']) ? intval($_GET['id']) : 0;
-
 ?>
 
 <!DOCTYPE html>

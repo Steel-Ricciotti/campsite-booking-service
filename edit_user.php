@@ -4,6 +4,7 @@ include 'includes/config.php';
 session_start();
 $theme = isset($_SESSION['theme']) ? $_SESSION['theme'] : 'summer';
 $error_message = isset($_SESSION['error']) ? $_SESSION['error'] : '';
+$success_message = isset($_SESSION['success']) ? $_SESSION['success'] : '';
 // Fetch user details for editing
 if (isset($_GET['user_id'])) {
     $user_id = intval($_GET['user_id']);
@@ -45,11 +46,7 @@ if (isset($_GET['user_id'])) {
     <section class="container my-5">
         <h2 class="text-center">Edit User</h2>
 
-        <!-- Display error message if any -->
-        <?php if ($error_message): ?>
-            <div class="alert alert-danger"><?php echo htmlspecialchars($error_message); ?></div>
-            <?php unset($_SESSION['error']); ?>
-        <?php endif; ?>
+
 
         <form action="process_edit_user.php" method="POST" class="p-4 border rounded">
             <input type="hidden" name="user_id" value="<?php echo htmlspecialchars($user['user_id']); ?>">

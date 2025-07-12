@@ -2,6 +2,8 @@
 session_start();
 include 'includes/config.php';
 $error_message = isset($_SESSION['error']) ? $_SESSION['error'] : '';
+$success_message = isset($_SESSION['success']) ? $_SESSION['success'] : '';
+
 $theme = isset($_SESSION['theme']) ? $_SESSION['theme'] : 'summer';
 // Fetch all campsites from the database
 $stmt = $conn->prepare("SELECT * FROM campsites");
@@ -58,6 +60,12 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             <div class="alert alert-danger"><?php echo htmlspecialchars($error_message); ?></div>
             <?php unset($_SESSION['error']); ?>
         <?php endif; ?>
+        <!-- Flash a success message if any -->
+        <?php if ($success_message): ?>
+            <div class="alert alert-success"><?php echo htmlspecialchars($success_message); ?></div>
+            <?php unset($_SESSION['success']); ?>
+        <?php endif; ?>
+
 
         <table class="table table-striped">
             <thead>
