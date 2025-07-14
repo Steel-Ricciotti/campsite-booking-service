@@ -26,7 +26,7 @@ $theme = isset($_SESSION['theme']) ? $_SESSION['theme'] : 'summer';
     <?php include 'includes/header.php'; ?>
 
     <section class="container my-5">
-        <h2 class="text-center">Featured Campsites</h2>
+        <h2 class="text-center">Campsites</h2>
         <div class="row">
             <?php foreach ($campsites as $campsite): ?>
                 <div class="col-md-4 mb-4">

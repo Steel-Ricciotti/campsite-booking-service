@@ -63,23 +63,12 @@ $success_message = isset($_GET['success']) ? htmlspecialchars($_GET['success']) 
         </div>
     </section>    
     
-    <!-- Interactive Map -->
-    <section class="container my-5">
-        <h2 class="text-center">Explore Our Campground</h2>
-        <div id="map" style="height: 400px;"></div>
-    </section>
-
-    <!-- Videos -->
     <section class="container my-5">
         <h2 class="text-center">Take a Tour</h2>
         <div class="ratio ratio-16x9">
-            <video controls>
-                <source src="assets/videos/campground_tour.mp4" type="video/mp4">
-                Your browser does not support the video tag.
-            </video>
+            <iframe src="https://www.youtube.com/embed/x0pwA9J-_pk" title="Campbook Campground Tour" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
         </div>
-    </section>    
-
+    </section>
 
     <?php include 'includes/footer.php'; ?>
 
